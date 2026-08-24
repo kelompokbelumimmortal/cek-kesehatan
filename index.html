@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SehatCheck - Platform cek kesehatan sederhana dan modern">
+    <title>SehatCheck - Cek Kesehatan Anda</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #f5f9fc;
+            color: #172b4d;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            height: 74px;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e8eef4;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #087f8c;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#087f8c,#21b6a8);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #52677f;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #087f8c;
+        }
+
+        .nav-button {
+            background: #087f8c;
+            color: white !important;
+            padding: 11px 20px;
+            border-radius: 10px;
+        }
+
+        .hero {
+            min-height: 680px;
+            padding: 90px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background:
+                radial-gradient(circle at 90% 20%, rgba(33,182,168,.17), transparent 30%),
+                linear-gradient(135deg,#eefbfc,#f7fbff);
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e0f7f5;
+            color: #087f8c;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px,6vw,72px);
+            line-height: 1.08;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #087f8c;
+        }
+
+        .hero p {
+            color: #65778d;
+            font-size: 18px;
+            max-width: 570px;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 23px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg,#087f8c,#16a99d);
+            color: white;
+            box-shadow: 0 12px 25px rgba(8,127,140,.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #087f8c;
+            border: 1px solid #dce8ee;
+        }
+
+        .hero-visual {
+            width: 440px;
+            height: 470px;
+            position: relative;
+        }
+
+        .doctor-card {
+            position: absolute;
+            inset: 35px 20px;
+            border-radius: 35px;
+            background: linear-gradient(145deg,#087f8c,#1ab6a7);
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(8,127,140,.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .doctor {
+            font-size: 170px;
+            filter: drop-shadow(0 20px 10px rgba(0,0,0,.15));
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 17px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(24,51,77,.14);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+        }
+
+        .heart-card {
+            top: 10px;
+            right: -10px;
+        }
+
+        .check-card {
+            bottom: 20px;
+            left: -20px;
+        }
+
+        .floating-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #e5f8f6;
+            display: grid;
+            place-items: center;
+            color: #087f8c;
+            font-size: 20px;
+        }
+
+        .section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #728399;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .feature {
+            background: white;
+            border: 1px solid #e8eef3;
+            border-radius: 20px;
+            padding: 30px;
+            transition: .3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 45px rgba(30,70,90,.09);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            background: #e7f8f6;
+            border-radius: 15px;
+            color: #087f8c;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #728399;
+        }
+
+        .stats {
+            background: #087f8c;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            padding: 55px 7%;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 38px;
+        }
+
+        .stat p {
+            opacity: .8;
+        }
+
+        footer {
+            background: #102a43;
+            color: white;
+            padding: 45px 7%;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        footer p {
+            color: #a9bacb;
+        }
+
+        @media(max-width:850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 60px;
+                flex-direction: column;
+            }
+
+            .hero-visual {
+                width: 100%;
+                max-width: 440px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            footer {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        <div class="logo-icon">♥</div>
+        SehatCheck
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Beranda</a></li>
+        <li><a href="cek-kesehatan.html">Cek Kesehatan</a></li>
+        <li><a href="hasil.html">Hasil</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="tentang.html">Tentang</a></li>
+    </ul>
+
+    <a href="cek-kesehatan.html" class="nav-button">Mulai Cek</a>
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+        <div class="badge">● Pemeriksaan kesehatan sederhana</div>
+
+        <h1>
+            Kenali kondisi tubuhmu,
+            <span>mulai hari ini.</span>
+        </h1>
+
+        <p>
+            SehatCheck membantu kamu memahami beberapa indikator
+            kesehatan dasar melalui pemeriksaan sederhana, cepat,
+            dan mudah digunakan.
+        </p>
+
+        <div class="buttons">
+            <a href="cek-kesehatan.html" class="btn btn-primary">
+                Mulai Pemeriksaan →
+            </a>
+
+            <a href="tentang.html" class="btn btn-secondary">
+                Pelajari SehatCheck
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+
+        <div class="doctor-card">
+            <div class="doctor">🧑‍⚕️</div>
+        </div>
+
+        <div class="floating-card heart-card">
+            <div class="floating-icon">♥</div>
+            <div>
+                <small>Detak Jantung</small>
+                <div>72 BPM</div>
+            </div>
+        </div>
+
+        <div class="floating-card check-card">
+            <div class="floating-icon">✓</div>
+            <div>
+                <small>Status</small>
+                <div>Sehat & Baik</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Kenapa menggunakan SehatCheck?</h2>
+        <p>
+            Dirancang agar pemeriksaan kesehatan dasar terasa lebih
+            sederhana dan mudah dipahami.
+        </p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Cepat & Praktis</h3>
+            <p>
+                Isi beberapa data dasar dan dapatkan hasil
+                pemeriksaan dalam waktu singkat.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Informasi Mudah Dipahami</h3>
+            <p>
+                Hasil disajikan menggunakan indikator dan
+                penjelasan sederhana.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <h3>Data di Perangkat</h3>
+            <p>
+                Data demo disimpan secara lokal di browser
+                menggunakan localStorage.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+    <div class="stat">
+        <h3>5+</h3>
+        <p>Indikator kesehatan</p>
+    </div>
+
+    <div class="stat">
+        <h3>100%</h3>
+        <p>Mudah digunakan</p>
+    </div>
+
+    <div class="stat">
+        <h3>24/7</h3>
+        <p>Dapat diakses kapan saja</p>
+    </div>
+</section>
+
+<footer>
+    <div>
+        <div class="logo" style="color:white;">
+            <div class="logo-icon">♥</div>
+            SehatCheck
+        </div>
+        <p style="margin-top:12px;">
+            Teman sederhana untuk lebih peduli pada kesehatan.
+        </p>
+    </div>
+
+    <p>© 2026 SehatCheck. Untuk edukasi, bukan diagnosis medis.</p>
+</footer>
+
+<script>
+    console.log("SehatCheck berhasil dimuat.");
+</script>
+
+</body>
+</html>
