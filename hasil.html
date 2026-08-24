@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pemeriksaan - SehatCheck</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #f4f9fb;
+            color: #172b4d;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            height: 74px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5edf2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #087f8c;
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg,#087f8c,#20b7a8);
+            color: white;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #61748a;
+            font-weight: 600;
+        }
+
+        .nav-links .active,
+        .nav-links a:hover {
+            color: #087f8c;
+        }
+
+        .header {
+            padding: 65px 7%;
+            background: linear-gradient(135deg,#e8f9f8,#f7fbff);
+        }
+
+        .header span {
+            color: #087f8c;
+            font-weight: 800;
+        }
+
+        .header h1 {
+            font-size: 43px;
+            margin: 8px 0;
+        }
+
+        .header p {
+            color: #708195;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .profile {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #e4edf2;
+            margin-bottom: 25px;
+        }
+
+        .profile-left {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: #e3f8f6;
+            color: #087f8c;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 25px;
+        }
+
+        .profile h2 {
+            font-size: 20px;
+        }
+
+        .profile p {
+            color: #75869a;
+        }
+
+        .date {
+            color: #8798aa;
+            font-size: 14px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border: 1px solid #e3ebf0;
+            border-radius: 18px;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(30,70,90,.08);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            background: #e5f8f6;
+            color: #087f8c;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+        }
+
+        .status {
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #e7f8ee;
+            color: #18864b;
+        }
+
+        .status.warning {
+            background: #fff3db;
+            color: #b77800;
+        }
+
+        .status.danger {
+            background: #ffebeb;
+            color: #c33c3c;
+        }
+
+        .value {
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .unit {
+            color: #8291a2;
+        }
+
+        .card small {
+            color: #7b8b9c;
+        }
+
+        .summary {
+            margin-top: 25px;
+            background: linear-gradient(135deg,#087f8c,#17a99d);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .summary h2 {
+            margin-bottom: 10px;
+        }
+
+        .summary p {
+            opacity: .9;
+            max-width: 800px;
+        }
+
+        .actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .primary {
+            background: #087f8c;
+            color: white;
+        }
+
+        .secondary {
+            background: white;
+            border: 1px solid #dbe6ec;
+            color: #087f8c;
+        }
+
+        .empty {
+            background: white;
+            padding: 70px 30px;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid #e3ebf0;
+        }
+
+        .empty-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #102a43;
+            color: white;
+            padding: 35px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #9eb0c2;
+        }
+
+        @media(max-width:800px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .profile {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        <div class="logo-icon">♥</div>
+        SehatCheck
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="cek-kesehatan.html">Cek Kesehatan</a></li>
+        <li><a href="hasil.html" class="active">Hasil</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="tentang.html">Tentang</a></li>
+    </ul>
+
+</nav>
+
+<header class="header">
+    <span>HASIL PEMERIKSAAN</span>
+    <h1>Ringkasan kesehatan</h1>
+    <p>Berikut adalah hasil dari data pemeriksaan yang kamu masukkan.</p>
+</header>
+
+<main class="container" id="content"></main>
+
+<footer>
+    <p>© 2026 SehatCheck — Hasil hanya untuk edukasi.</p>
+</footer>
+
+<script>
+
+    const content = document.getElementById("content");
+
+    const stored = localStorage.getItem("sehatCheckData");
+
+    if (!stored) {
+
+        content.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">🩺</div>
+                <h2>Belum ada hasil pemeriksaan</h2>
+                <p style="color:#7b8b9c;margin:10px 0 25px;">
+                    Silakan lakukan pemeriksaan kesehatan terlebih dahulu.
+                </p>
+                <a href="cek-kesehatan.html" class="btn primary">
+                    Mulai Pemeriksaan
+                </a>
+            </div>
+        `;
+
+    } else {
+
+        const data = JSON.parse(stored);
+
+        function statusClass(status) {
+
+            if (
+                status === "Normal" ||
+                status === "Sedang"
+            ) {
+                return "";
+            }
+
+            if (
+                status === "Meningkat" ||
+                status === "Berat badan berlebih"
+            ) {
+                return "warning";
+            }
+
+            return "danger";
+        }
+
+        content.innerHTML = `
+
+            <div class="profile">
+
+                <div class="profile-left">
+
+                    <div class="avatar">👤</div>
+
+                    <div>
+                        <h2>${data.nama}</h2>
+                        <p>
+                            ${data.usia} tahun •
+                            ${data.gender} •
+                            Aktivitas ${data.aktivitas}
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="date">
+                    Pemeriksaan: ${data.tanggal}
+                </div>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="card-icon">⚖️</div>
+                        <span class="status ${statusClass(data.kategoriBMI)}">
+                            ${data.kategoriBMI}
+                        </span>
+                    </div>
+
+                    <small>Indeks Massa Tubuh</small>
+
+                    <div class="value">
+                        ${data.bmi}
+                    </div>
+
+                    <span class="unit">BMI</span>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="card-icon">♥</div>
+                        <span class="status ${statusClass(data.tekanan)}">
+                            ${data.tekanan}
+                        </span>
+                    </div>
+
+                    <small>Tekanan Darah</small>
+
+                    <div class="value">
+                        ${data.sistolik}/${data.diastolik}
+                    </div>
+
+                    <span class="unit">mmHg</span>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="card-icon">♡</div>
+                        <span class="status ${statusClass(data.nadiStatus)}">
+                            ${data.nadiStatus}
+                        </span>
+                    </div>
+
+                    <small>Denyut Nadi</small>
+
+                    <div class="value">
+                        ${data.nadi}
+                    </div>
+
+                    <span class="unit">BPM</span>
+
+                </div>
+
+            </div>
+
+            <div class="summary">
+
+                <h2>💡 Ringkasan</h2>
+
+                <p>
+                    Berdasarkan data yang kamu masukkan, BMI kamu berada
+                    pada kategori <strong>${data.kategoriBMI}</strong>,
+                    tekanan darah berada pada kategori
+                    <strong>${data.tekanan}</strong>, dan denyut nadi
+                    berada pada kategori <strong>${data.nadiStatus}</strong>.
+                </p>
+
+            </div>
+
+            <div class="actions">
+
+                <a href="cek-kesehatan.html" class="btn primary">
+                    Cek Lagi
+                </a>
+
+                <a href="tips.html" class="btn secondary">
+                    Lihat Tips Kesehatan
+                </a>
+
+            </div>
+        `;
+    }
+
+</script>
+
+</body>
+</html>
