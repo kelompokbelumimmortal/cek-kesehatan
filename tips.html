@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tips Kesehatan - SehatCheck</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #f5f9fc;
+            color: #172b4d;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            height: 74px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5edf2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #087f8c;
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#087f8c,#20b7a8);
+            color: white;
+            display: grid;
+            place-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #61748a;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #087f8c;
+        }
+
+        .hero {
+            padding: 70px 7%;
+            text-align: center;
+            background: linear-gradient(135deg,#e8f9f8,#f7fbff);
+        }
+
+        .hero span {
+            color: #087f8c;
+            font-weight: 800;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin: 10px 0;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #718298;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto 90px;
+            padding: 0 20px;
+        }
+
+        .tips {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 25px;
+        }
+
+        .tip {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #e4edf2;
+            transition: .3s;
+        }
+
+        .tip:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(20,60,80,.08);
+        }
+
+        .tip-icon {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            background: #e5f8f6;
+            color: #087f8c;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .tip h2 {
+            margin-bottom: 10px;
+        }
+
+        .tip p {
+            color: #718298;
+        }
+
+        .tip ul {
+            padding-left: 20px;
+            margin-top: 15px;
+            color: #718298;
+        }
+
+        .tip li {
+            margin-bottom: 7px;
+        }
+
+        .quote {
+            margin-top: 30px;
+            padding: 35px;
+            border-radius: 20px;
+            background: #087f8c;
+            color: white;
+            text-align: center;
+        }
+
+        .quote p {
+            font-size: 21px;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #102a43;
+            color: white;
+            padding: 35px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #9eb0c2;
+        }
+
+        @media(max-width:750px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .tips {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        <div class="logo-icon">♥</div>
+        SehatCheck
+    </a>
+
+    <ul class="nav-links">
+
+        <li><a href="index.html">Beranda</a></li>
+
+        <li>
+            <a href="cek-kesehatan.html">
+                Cek Kesehatan
+            </a>
+        </li>
+
+        <li>
+            <a href="hasil.html">
+                Hasil
+            </a>
+        </li>
+
+        <li>
+            <a href="tips.html" class="active">
+                Tips
+            </a>
+        </li>
+
+        <li>
+            <a href="tentang.html">
+                Tentang
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<section class="hero">
+
+    <span>HEALTH TIPS</span>
+
+    <h1>
+        Kebiasaan kecil, dampak besar
+    </h1>
+
+    <p>
+        Menjaga kesehatan tidak selalu membutuhkan perubahan
+        besar. Mulailah dari kebiasaan sederhana yang dapat
+        dilakukan secara konsisten.
+    </p>
+
+</section>
+
+<main class="container">
+
+    <div class="tips">
+
+        <article class="tip">
+
+            <div class="tip-icon">💧</div>
+
+            <h2>Cukupi kebutuhan air</h2>
+
+            <p>
+                Air membantu berbagai fungsi tubuh dan menjaga
+                tubuh tetap terhidrasi.
+            </p>
+
+            <ul>
+                <li>Minum secara berkala sepanjang hari.</li>
+                <li>Sesuaikan kebutuhan dengan aktivitas.</li>
+                <li>Perhatikan tanda-tanda dehidrasi.</li>
+            </ul>
+
+        </article>
+
+        <article class="tip">
+
+            <div class="tip-icon">🥗</div>
+
+            <h2>Pilih makanan bergizi</h2>
+
+            <p>
+                Usahakan pola makan yang beragam dengan
+                sayur, buah, protein, dan sumber karbohidrat.
+            </p>
+
+            <ul>
+                <li>Perbanyak variasi sayur dan buah.</li>
+                <li>Batasi makanan ultra-proses.</li>
+                <li>Perhatikan ukuran porsi.</li>
+            </ul>
+
+        </article>
+
+        <article class="tip">
+
+            <div class="tip-icon">🏃</div>
+
+            <h2>Aktif bergerak</h2>
+
+            <p>
+                Aktivitas fisik secara rutin dapat membantu
+                menjaga kebugaran dan kesehatan tubuh.
+            </p>
+
+            <ul>
+                <li>Berjalan kaki secara rutin.</li>
+                <li>Kurangi duduk terlalu lama.</li>
+                <li>Pilih aktivitas yang kamu sukai.</li>
+            </ul>
+
+        </article>
+
+        <article class="tip">
+
+            <div class="tip-icon">😴</div>
+
+            <h2>Jaga kualitas tidur</h2>
+
+            <p>
+                Tidur yang cukup memberikan kesempatan bagi tubuh
+                untuk beristirahat dan memulihkan diri.
+            </p>
+
+            <ul>
+                <li>Buat jadwal tidur yang konsisten.</li>
+                <li>Kurangi penggunaan layar sebelum tidur.</li>
+                <li>Buat lingkungan tidur yang nyaman.</li>
+            </ul>
+
+        </article>
+
+        <article class="tip">
+
+            <div class="tip-icon">🧘</div>
+
+            <h2>Kelola stres</h2>
+
+            <p>
+                Kesehatan mental merupakan bagian penting dari
+                kesehatan secara keseluruhan.
+            </p>
+
+            <ul>
+                <li>Luangkan waktu untuk beristirahat.</li>
+                <li>Lakukan aktivitas yang menyenangkan.</li>
+                <li>Bicarakan masalah dengan orang terpercaya.</li>
+            </ul>
+
+        </article>
+
+        <article class="tip">
+
+            <div class="tip-icon">🩺</div>
+
+            <h2>Lakukan pemeriksaan</h2>
+
+            <p>
+                Pemeriksaan kesehatan secara berkala dapat
+                membantu mengenali perubahan kondisi tubuh.
+            </p>
+
+            <ul>
+                <li>Perhatikan perubahan kondisi tubuh.</li>
+                <li>Konsultasikan keluhan kepada tenaga kesehatan.</li>
+                <li>Jangan abaikan gejala yang menetap.</li>
+            </ul>
+
+        </article>
+
+    </div>
+
+    <div class="quote">
+
+        <p>
+            “Kesehatan bukan hanya tentang tidak sakit,
+            tetapi juga tentang menjaga tubuh dan pikiran
+            agar tetap berfungsi dengan baik.”
+        </p>
+
+    </div>
+
+</main>
+
+<footer>
+
+    <p>
+        © 2026 SehatCheck — Informasi untuk tujuan edukasi.
+    </p>
+
+</footer>
+
+<script>
+
+    console.log("Halaman tips kesehatan aktif.");
+
+</script>
+
+</body>
+</html>
