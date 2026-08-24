@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kesehatan - SehatCheck</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #f4f9fb;
+            color: #172b4d;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            height: 74px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5edf2;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #087f8c;
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg,#087f8c,#20b7a8);
+            color: white;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #61748a;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #087f8c;
+        }
+
+        .page-header {
+            padding: 65px 7% 40px;
+            background: linear-gradient(135deg,#e8f9f8,#f7fbff);
+        }
+
+        .page-header span {
+            color: #087f8c;
+            font-weight: 700;
+        }
+
+        .page-header h1 {
+            font-size: 45px;
+            margin: 10px 0;
+        }
+
+        .page-header p {
+            color: #6c7e91;
+            max-width: 650px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 40px auto 90px;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 22px;
+            border: 1px solid #e4edf2;
+            box-shadow: 0 15px 40px rgba(30,70,90,.06);
+        }
+
+        .section-label {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #087f8c;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #dce7ed;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+            transition: .3s;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #087f8c;
+            box-shadow: 0 0 0 3px rgba(8,127,140,.1);
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .health-note {
+            background: #fff8e8;
+            border-left: 4px solid #f2ad24;
+            padding: 15px;
+            border-radius: 8px;
+            color: #795b1c;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            border: none;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg,#087f8c,#18aa9f);
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(8,127,140,.2);
+        }
+
+        .result-preview {
+            margin-top: 25px;
+            display: none;
+            padding: 20px;
+            border-radius: 12px;
+            background: #e8f9f7;
+            color: #087f8c;
+            text-align: center;
+        }
+
+        footer {
+            background: #102a43;
+            color: white;
+            padding: 35px 7%;
+            text-align: center;
+        }
+
+        footer p {
+            color: #9eb0c2;
+        }
+
+        @media(max-width:700px) {
+            .nav-links {
+                display: none;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .page-header h1 {
+                font-size: 35px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        <div class="logo-icon">♥</div>
+        SehatCheck
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="cek-kesehatan.html" class="active">Cek Kesehatan</a></li>
+        <li><a href="hasil.html">Hasil</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="tentang.html">Tentang</a></li>
+    </ul>
+
+</nav>
+
+<header class="page-header">
+    <span>PEMERIKSAAN KESEHATAN</span>
+    <h1>Cek kondisi kesehatanmu</h1>
+    <p>
+        Masukkan beberapa data dasar di bawah ini.
+        Sistem akan memberikan gambaran sederhana mengenai
+        indikator kesehatanmu.
+    </p>
+</header>
+
+<main class="container">
+
+    <form class="form-card" id="healthForm">
+
+        <div class="section-label">👤 Data pribadi</div>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Nama</label>
+                <input type="text" id="nama" placeholder="Masukkan nama" required>
+            </div>
+
+            <div class="input-group">
+                <label>Usia</label>
+                <input type="number" id="usia" placeholder="Contoh: 25" min="1" max="120" required>
+            </div>
+
+            <div class="input-group">
+                <label>Jenis kelamin</label>
+                <select id="gender" required>
+                    <option value="">Pilih jenis kelamin</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Aktivitas fisik</label>
+                <select id="aktivitas" required>
+                    <option value="">Pilih aktivitas</option>
+                    <option value="Rendah">Rendah</option>
+                    <option value="Sedang">Sedang</option>
+                    <option value="Tinggi">Tinggi</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="section-label">📏 Pengukuran tubuh</div>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Berat badan (kg)</label>
+                <input type="number" id="berat" placeholder="Contoh: 65" min="1" required>
+            </div>
+
+            <div class="input-group">
+                <label>Tinggi badan (cm)</label>
+                <input type="number" id="tinggi" placeholder="Contoh: 170" min="50" required>
+            </div>
+
+            <div class="input-group">
+                <label>Tekanan darah sistolik</label>
+                <input type="number" id="sistolik" placeholder="Contoh: 120" min="50" max="250" required>
+            </div>
+
+            <div class="input-group">
+                <label>Tekanan darah diastolik</label>
+                <input type="number" id="diastolik" placeholder="Contoh: 80" min="30" max="150" required>
+            </div>
+
+            <div class="input-group full">
+                <label>Denyut nadi (BPM)</label>
+                <input type="number" id="nadi" placeholder="Contoh: 72" min="30" max="200" required>
+            </div>
+
+        </div>
+
+        <div class="health-note">
+            ⚠️ <strong>Perhatian:</strong>
+            Hasil dari website ini hanya untuk edukasi dan
+            pemeriksaan awal sederhana. Hasil bukan diagnosis
+            medis dan tidak menggantikan konsultasi dokter.
+        </div>
+
+        <button class="submit-btn" type="submit">
+            Analisis Kesehatan Saya →
+        </button>
+
+        <div class="result-preview" id="preview">
+            Data berhasil diproses. Mengarahkan ke halaman hasil...
+        </div>
+
+    </form>
+
+</main>
+
+<footer>
+    <p>© 2026 SehatCheck — Edukasi kesehatan sederhana.</p>
+</footer>
+
+<script>
+
+    const form = document.getElementById("healthForm");
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const nama = document.getElementById("nama").value;
+        const usia = Number(document.getElementById("usia").value);
+        const gender = document.getElementById("gender").value;
+        const aktivitas = document.getElementById("aktivitas").value;
+
+        const berat = Number(document.getElementById("berat").value);
+        const tinggi = Number(document.getElementById("tinggi").value);
+        const sistolik = Number(document.getElementById("sistolik").value);
+        const diastolik = Number(document.getElementById("diastolik").value);
+        const nadi = Number(document.getElementById("nadi").value);
+
+        const tinggiMeter = tinggi / 100;
+        const bmi = berat / (tinggiMeter * tinggiMeter);
+
+        let kategoriBMI;
+
+        if (bmi < 18.5) {
+            kategoriBMI = "Berat badan kurang";
+        } else if (bmi < 25) {
+            kategoriBMI = "Normal";
+        } else if (bmi < 30) {
+            kategoriBMI = "Berat badan berlebih";
+        } else {
+            kategoriBMI = "Obesitas";
+        }
+
+        let tekanan;
+
+        if (sistolik < 90 || diastolik < 60) {
+            tekanan = "Rendah";
+        } else if (sistolik < 120 && diastolik < 80) {
+            tekanan = "Normal";
+        } else if (sistolik < 140 && diastolik < 90) {
+            tekanan = "Meningkat";
+        } else {
+            tekanan = "Tinggi";
+        }
+
+        let nadiStatus;
+
+        if (nadi < 60) {
+            nadiStatus = "Rendah";
+        } else if (nadi <= 100) {
+            nadiStatus = "Normal";
+        } else {
+            nadiStatus = "Tinggi";
+        }
+
+        const data = {
+            nama,
+            usia,
+            gender,
+            aktivitas,
+            berat,
+            tinggi,
+            sistolik,
+            diastolik,
+            nadi,
+            bmi: bmi.toFixed(1),
+            kategoriBMI,
+            tekanan,
+            nadiStatus,
+            tanggal: new Date().toLocaleDateString("id-ID")
+        };
+
+        localStorage.setItem("sehatCheckData", JSON.stringify(data));
+
+        document.getElementById("preview").style.display = "block";
+
+        setTimeout(() => {
+            window.location.href = "hasil.html";
+        }, 900);
+
+    });
+
+</script>
+
+</body>
+</html>
